@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GithubIcon, LinkedinIcon, TwitterIcon, MenuIcon, XIcon } from 'lucide-react';
+import { Github, Linkedin, Twitter, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -48,7 +48,7 @@ const Header = ({ currentSection }) => {
           Sabelo Sibaya
         </motion.h1>
 
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-6 mx-auto">
           {navItems.map((item, index) => (
             <motion.a
               key={item}
@@ -61,25 +61,26 @@ const Header = ({ currentSection }) => {
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </motion.a>
           ))}
-          <div className="flex items-center space-x-4">
-            <a href="https://github.com/Sabelodone" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <GithubIcon className="h-6 w-6 text-white hover:text-purple-300 transition-all" />
-            </a>
-            <a href="https://www.linkedin.com/in/sabelo-sibaya-386076b3" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <LinkedinIcon className="h-6 w-6 text-white hover:text-purple-300 transition-all" />
-            </a>
-            <a href="https://x.com/sabelod1_?s=11" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <TwitterIcon className="h-6 w-6 text-white hover:text-purple-300 transition-all" />
-            </a>
-          </div>
         </nav>
+
+        <div className="hidden md:flex items-center space-x-4">
+          <a href="https://github.com" aria-label="Github">
+            <Github className="h-6 w-6 text-white hover:text-purple-300" />
+          </a>
+          <a href="https://linkedin.com" aria-label="LinkedIn">
+            <Linkedin className="h-6 w-6 text-white hover:text-purple-300" />
+          </a>
+          <a href="https://twitter.com" aria-label="Twitter">
+            <Twitter className="h-6 w-6 text-white hover:text-purple-300" />
+          </a>
+        </div>
 
         <button
           className="md:hidden p-2 rounded-full text-white hover:bg-gray-700 transition-all"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <XIcon className="h-6 w-6 rotate-45" /> : <MenuIcon className="h-6 w-6" />}
+          {isMenuOpen ? <X className="h-6 w-6 rotate-45" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
@@ -109,7 +110,7 @@ const Header = ({ currentSection }) => {
                   <span className="text-2xl font-bold text-purple-100">Sabelo Sibaya</span>
                 </Link>
                 <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
-                  <XIcon size={24} color="purple" />
+                  <X size={24} color="purple" />
                 </button>
               </div>
 

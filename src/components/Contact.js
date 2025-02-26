@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import emailjs from 'emailjs-com'; // Import EmailJS
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [ref, isInView] = useInView({ triggerOnce: true });
   const mainControls = useAnimation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     if (isInView) {
@@ -13,42 +16,36 @@ const Contact = () => {
     }
   }, [isInView, mainControls]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setIsSuccess(false);
+    setIsError(false);
 
-    // Get the form element directly (no need to create FormData object)
     const form = e.target;
 
-    // Log the form data for debugging
-    const formData = new FormData(form);
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
-
-    // Send the form data using EmailJS
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID, // Use environment variable
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID, // Use environment variable
-        form, // Pass the actual form element here (e.target)
-        process.env.REACT_APP_EMAILJS_USER_ID // Use environment variable
-      )
-      .then(
-        (result) => {
-          alert('Message sent successfully!');
-          form.reset(); // Reset form fields after successful submission
-        },
-        (error) => {
-          console.error('Error sending message:', error);
-          alert('Error sending message, please try again later.');
-        }
+    try {
+      await emailjs.sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        form,
+        process.env.REACT_APP_EMAILJS_USER_ID
       );
+
+      setIsSuccess(true);
+      form.reset();
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setIsError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/Sabelo Sibaya Resume 2024 (3).pdf'; // Path to the resume in the public folder
-    link.download = 'Sabelo_Sibaya_Resume.pdf'; // Desired download file name
+    link.href = '/ss resume.pdf';
+    link.download = 'Sabelo_Sibaya_Resume.pdf';
     link.click();
   };
 
@@ -56,7 +53,7 @@ const Contact = () => {
     <section
       id="contact"
       ref={ref}
-      className="py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-200"
+      className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-200"
     >
       <motion.div
         variants={{
@@ -66,18 +63,20 @@ const Contact = () => {
         initial="hidden"
         animate={mainControls}
         transition={{ duration: 0.6, delay: 0.25 }}
-        className="max-w-4xl mx-auto bg-gray-800/90 backdrop-blur-lg p-8 rounded-xl shadow-xl"
+        className="max-w-4xl mx-auto bg-gray-800/90 backdrop-blur-lg p-8 rounded-xl shadow-2xl border border-gray-700"
       >
         {/* Header Section */}
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-extrabold text-white">Contact Me</h1>
-          <p className="text-lg text-gray-400">
-            Feel free to reach out for opportunities or inquiries.
+        <div className="mb-12 text-center">
+          <h1 className="text-5xl font-extrabold text-white bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            Contact Me
+          </h1>
+          <p className="mt-4 text-lg text-gray-400">
+          Feel free to reach out for opportunities or inquiries.
           </p>
         </div>
 
         {/* Form Section */}
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-8" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
@@ -88,7 +87,7 @@ const Contact = () => {
                 name="name"
                 type="text"
                 placeholder="Your Name"
-                className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                 required
               />
             </div>
@@ -101,7 +100,7 @@ const Contact = () => {
                 name="email"
                 type="email"
                 placeholder="your@email.com"
-                className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
                 required
               />
             </div>
@@ -116,7 +115,7 @@ const Contact = () => {
               name="subject"
               type="text"
               placeholder="Subject"
-              className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
               required
             />
           </div>
@@ -129,30 +128,43 @@ const Contact = () => {
               id="message"
               name="message"
               placeholder="Your message here..."
-              rows="4"
-              className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              rows="5"
+              className="w-full px-4 py-3 bg-gray-700 text-gray-200 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
               required
             ></textarea>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              disabled={isSubmitting}
+              className="w-full md:w-auto px-6 py-3 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200"
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleDownloadResume}
-              className="px-6 py-3 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full md:w-auto px-6 py-3 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200"
             >
               Download Resume
             </motion.button>
           </div>
+
+          {/* Feedback Messages */}
+          {isSuccess && (
+            <div className="mt-6 p-4 bg-green-900/50 text-green-400 rounded-lg text-center">
+              Message sent successfully! 🎉
+            </div>
+          )}
+          {isError && (
+            <div className="mt-6 p-4 bg-red-900/50 text-red-400 rounded-lg text-center">
+              Error sending message. Please try again later.
+            </div>
+          )}
         </form>
       </motion.div>
     </section>

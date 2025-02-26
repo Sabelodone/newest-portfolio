@@ -45,7 +45,7 @@ const CodingQuotes = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-bl from-purple-900 via-purple-700 to-purple-600 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-bl from-purple-900 via-purple-700 to-purple-600 text-white relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -66,7 +66,7 @@ const CodingQuotes = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h2 className="text-5xl font-extrabold mb-8 drop-shadow-lg">
+        <h2 className="text-5xl font-extrabold mb-8 drop-shadow-lg bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-400">
           Inspiration for Coders
         </h2>
         <p className="text-lg italic mb-12 opacity-90 max-w-3xl mx-auto">
@@ -78,7 +78,7 @@ const CodingQuotes = () => {
           {quotes.map((quote, index) => (
             <motion.div
               key={index}
-              className="p-6 bg-gradient-to-tr from-white via-gray-100 to-gray-200 text-gray-900 rounded-xl shadow-xl transform hover:scale-105 transition-all duration-300 relative"
+              className="p-6 bg-gradient-to-tr from-white via-gray-100 to-gray-200 text-gray-900 rounded-xl shadow-2xl transform hover:scale-105 transition-all duration-300 relative overflow-hidden group"
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -89,9 +89,12 @@ const CodingQuotes = () => {
               </p>
               <p className="text-sm font-bold text-gray-600">- {quote.author}</p>
               <motion.div
-                className="absolute inset-0 bg-purple-300 opacity-0 rounded-xl"
-                whileHover={{ opacity: 0.2 }}
-                transition={{ duration: 0.3 }}
+                className="absolute inset-0 bg-purple-300 opacity-0 rounded-xl group-hover:opacity-20 transition-all duration-300"
+              ></motion.div>
+              <motion.div
+                className="absolute -bottom-8 -right-8 w-20 h-20 bg-purple-500 opacity-10 rounded-full group-hover:opacity-30 transition-all duration-500"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
               ></motion.div>
             </motion.div>
           ))}
@@ -105,14 +108,14 @@ const CodingQuotes = () => {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           ></motion.div>
 
-          <h3 className="text-3xl font-bold mb-8 text-center relative z-10">
+          <h3 className="text-3xl font-bold mb-8 text-center relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
             My Front-End Developer Skills
           </h3>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 relative z-10">
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
-                className="p-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg shadow-md text-center transform hover:scale-105 transition-all duration-300"
+                className="p-6 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg shadow-md text-center transform hover:scale-105 transition-all duration-300 group relative overflow-hidden"
                 initial={{ y: 50, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
@@ -121,6 +124,14 @@ const CodingQuotes = () => {
                 <div className="mb-4">{skill.icon}</div>
                 <h4 className="text-xl font-semibold mb-2">{skill.title}</h4>
                 <p className="text-sm text-gray-700">{skill.description}</p>
+                <motion.div
+                  className="absolute inset-0 bg-purple-300 opacity-0 group-hover:opacity-20 transition-all duration-300"
+                ></motion.div>
+                <motion.div
+                  className="absolute -bottom-8 -right-8 w-20 h-20 bg-purple-500 opacity-10 rounded-full group-hover:opacity-30 transition-all duration-500"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                ></motion.div>
               </motion.div>
             ))}
           </div>
