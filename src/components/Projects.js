@@ -31,6 +31,14 @@ const Projects = () => {
 
   const projects = [
     {
+      title: "LuxeCommerce",
+      description:
+        "This E-commerce User Profile Dashboard is a responsive web app built with React.js, Tailwind CSS, and Firebase for authentication and data storage. It features user profile management, order history tracking, and a dark mode toggle. Users can update their details with real-time validation, track past orders, and switch themes seamlessly. Firebase handles authentication and database operations, ensuring secure and efficient data management. 🚀",
+      image: "/Screenshot 2025-03-04 163615.png",
+      github: "https://github.com/Sabelodone/store/tree/master/online-store",
+      demo: "https://online-store-drab.vercel.app/",
+    },
+    {
       title: "Cube CNS",
       description:
         "Cube CNS, appears to be a comprehensive student-tutor management system designed to track and manage student progress, tutor sessions, billing, and reporting. It provides an interactive dashboard where users can navigate through different components like Student Management, Tutor Management, Session Management, Billing, Reports, and Settings.",
