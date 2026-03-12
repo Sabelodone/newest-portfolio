@@ -5,8 +5,8 @@ import emailjs from 'emailjs-com';
 import { 
   Send, Download, Mail, Phone, MapPin, Github, Linkedin, 
   Twitter, CheckCircle, AlertCircle, Loader, Sparkles,
-  Copy, Globe, MessageSquare, FileText, Award, Calendar,
-  Clock, Heart, Zap, ExternalLink, User, AtSign
+  Copy, Globe, MessageSquare, FileText,  Calendar,
+  Clock, Heart, Zap,User, AtSign
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 

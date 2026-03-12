@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Twitter, Menu, X, Home, User, Code, Briefcase, Mail, Phone } from 'lucide-react';
+import { Github, Linkedin, Twitter, Menu, X, User, Code, Briefcase, Mail, Phone } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 

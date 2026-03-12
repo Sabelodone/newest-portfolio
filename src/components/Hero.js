@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Code, Sparkles, Zap, Award, Github, Linkedin, Mail } from 'lucide-react';
+import { Code, Sparkles, Zap, Award, Github, Linkedin, Mail } from 'lucide-react'; // Removed ChevronDown
 import Scene from './Scene';
 
 const Hero = () => {
@@ -36,12 +36,13 @@ const Hero = () => {
 
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
 
+  // Fixed useEffect - added roles.length dependency
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]); // Added roles.length dependency
 
   const stats = [
     { icon: <Code className="h-5 w-5" />, value: '5+', label: 'Projects' },
@@ -340,5 +341,5 @@ const Hero = () => {
     </section>
   );
 };
-
+ 
 export default Hero;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Users, Code, ExternalLink, Calendar, Target, GraduationCap, Briefcase, BookOpen, Zap, Globe, Heart, Clock, Server, Layout, Terminal, Database, Cloud, GitBranch } from 'lucide-react';
+import { Award, Users, Code, Target, GraduationCap, Briefcase, Heart, Clock, Layout, Terminal, Database, Cloud, GitBranch } from 'lucide-react';
 
 const About = () => {
   return (

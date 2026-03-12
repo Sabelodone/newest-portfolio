@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react"
 import { motion, useAnimation, useInView } from "framer-motion"
-import { Github, ExternalLink, Users, Calendar, CreditCard, Mail, Shield, Award, TrendingUp, Film, Briefcase, BarChart, DollarSign, Camera, Video, Mic, Play } from "lucide-react"
+import { Github, ExternalLink, Users, CreditCard, Mail, Shield, Award, TrendingUp, Film, BarChart, Video, Mic, Play } from "lucide-react"
 
 const Projects = () => {
   const ref = useRef(null)

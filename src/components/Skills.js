@@ -2,12 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaBootstrap, 
-  FaGitAlt, FaGithub, FaDatabase, FaDocker, FaAws, FaPython,
+  FaGitAlt, FaGithub, FaDocker, FaAws, FaPython,
   FaLock, FaEnvelope, FaWhatsapp, FaCreditCard, FaShieldAlt,
-  FaServer, FaToolbox, FaLockOpen, FaCodeBranch, FaBug,
-  FaTerminal, FaCloud, FaRegFileCode
+  FaServer,  FaLockOpen, FaCodeBranch, FaBug,
+  FaTerminal,  FaRegFileCode
 } from 'react-icons/fa';
-import { DiCssdeck, DiMysql, DiJqueryLogo, DiNpm, DiGitBranch } from 'react-icons/di';
+import {DiMysql, DiJqueryLogo, DiNpm, DiGitBranch } from 'react-icons/di';
 import { 
   SiTypescript, SiNextdotjs, SiFirebase, SiMongodb, SiRedux, 
   SiExpress, SiFramer, SiGraphql, SiPrisma, SiJest, SiCypress, 
